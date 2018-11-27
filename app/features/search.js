@@ -49,11 +49,14 @@ export function provideSelectorEngine(Engine) {
   SelectorEngine = Engine
 }
 
-export function queryPage(query, fn) {
-  if (query == 'links') query = 'a'
+export async function queryPage(query, fn) {
+  if (query === 'highlight tap target')
+    return (await import('../plugins/taptarget.plugin.js')).default()
+
+  if (query == 'links')   query = 'a'
   if (query == 'buttons') query = 'button'
-  if (query == 'images') query = 'img'
-  if (query == 'text') query = 'p,caption,a,h1,h2,h3,h4,h5,h6,small,date,time,li,dt,dd'
+  if (query == 'images')  query = 'img'
+  if (query == 'text')    query = 'p,caption,a,h1,h2,h3,h4,h5,h6,small,date,time,li,dt,dd'
 
   if (!query) return SelectorEngine.unselect_all()
   if (query == '.' || query == '#') return

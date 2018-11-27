@@ -3,6 +3,7 @@ import postcss  from 'rollup-plugin-postcss'
 
 export default {
   input: 'app/index.js',
+  experimentalCodeSplitting: true,
   output: {
     file:       'app/bundle.js',
     format:     'es',
